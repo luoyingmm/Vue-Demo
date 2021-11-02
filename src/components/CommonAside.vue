@@ -5,7 +5,8 @@
             text-color="#fff"
             active-text-color="#ffd04b"
   >
-    <h3>通用后台管理系统</h3>
+    <h3 v-show="!isCollapse">落樱后台管理系统</h3>
+    <h3 v-show="isCollapse">管理</h3>
     <el-menu-item :index="item.path"
                   v-for="item in noChildren"
                   :key="item.path"
@@ -34,7 +35,6 @@ export default {
   name: 'CommonAside',
   data () {
     return {
-      isCollapse: false,
       menu: [
         {
           path: '/',
@@ -93,6 +93,9 @@ export default {
     },
     hasChildren () {
       return this.menu.filter((item) => item.children)
+    },
+    isCollapse () {
+      return this.$store.state.tab.isCollapse
     }
   }
 }
