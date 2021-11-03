@@ -8,13 +8,13 @@
      </el-breadcrumb>
    </div>
    <div class="r-content">
-     <el-dropdown trigger="click" size="mini">
+     <el-dropdown trigger="click" size="mini" @command="handleCommand">
        <span class="el-dropdown-link">
          <img :src="userImg" class="user">
        </span>
        <el-dropdown-menu slot="dropdown">
          <el-dropdown-item>个人中心</el-dropdown-item>
-         <el-dropdown-item>退出</el-dropdown-item>
+         <el-dropdown-item command="exit">退出</el-dropdown-item>
        </el-dropdown-menu>
      </el-dropdown>
    </div>
@@ -33,6 +33,11 @@ export default {
   methods:{
     changeMenuSize(){
       this.$store.commit('collapseMenu')
+    },
+    handleCommand(command) {
+      if (command === 'exit'){
+        this.$router.push({ path:'/'})
+      }
     }
   },
   computed:{

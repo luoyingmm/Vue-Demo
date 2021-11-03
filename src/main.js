@@ -5,10 +5,12 @@ import router from './router'
 import store from './store'
 import http from 'axios'
 import { Button, Select, Radio, Container, Aside, Header, Main, Menu, MenuItem, MenuItemGroup, Submenu, Dropdown,DropdownItem,DropdownMenu,Row,Col,Card,Table,TableColumn,Tag,Breadcrumb,BreadcrumbItem} from 'element-ui'
+import 'element-ui/lib/theme-chalk/base.css';
+import CollapseTransition from 'element-ui/lib/transitions/collapse-transition';
 // import ElementUI from 'element-ui'
 // import 'element-ui/lib/theme-chalk/index.css'
 Vue.config.productionTip = false
-
+Vue.component(CollapseTransition.name, CollapseTransition)
 Vue.component(Button.name, Button)
 Vue.component(Select.name, Select)
 Vue.component(Radio.name, Radio)

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Main from '../views/Main.vue'
+import login from '../components/login/login'
 const originPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push(location){
   return originPush.call(this,location).catch(err => err)
@@ -11,7 +12,7 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/main',
     name: 'Main',
     component: Main,
     children:[
@@ -31,6 +32,12 @@ const routes = [
         component:() => import('@/views/User/User')
       }
     ]
+  },
+
+  {
+    path: '/',
+    name: 'login',
+    component: login
   },
 
 ]
