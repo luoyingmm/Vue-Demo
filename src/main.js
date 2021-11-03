@@ -4,7 +4,7 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import http from 'axios'
-import { Button, Select, Radio, Container, Aside, Header, Main, Menu, MenuItem, MenuItemGroup, Submenu, Dropdown,DropdownItem,DropdownMenu,Row,Col,Card,Table,TableColumn} from 'element-ui'
+import { Button, Select, Radio, Container, Aside, Header, Main, Menu, MenuItem, MenuItemGroup, Submenu, Dropdown,DropdownItem,DropdownMenu,Row,Col,Card,Table,TableColumn,Tag,Breadcrumb,BreadcrumbItem} from 'element-ui'
 // import ElementUI from 'element-ui'
 // import 'element-ui/lib/theme-chalk/index.css'
 Vue.config.productionTip = false
@@ -29,6 +29,9 @@ Vue.use(Card)
 Vue.use(Table)
 Vue.use(TableColumn)
 Vue.use(TableColumn)
+Vue.use(Tag)
+Vue.use(Breadcrumb)
+Vue.use(BreadcrumbItem)
 Vue.prototype.$http = http
 
 if (process.env.NODE_ENV === 'development') require('@/api/mock')
