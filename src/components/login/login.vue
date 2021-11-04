@@ -6,10 +6,10 @@
         <div class="login_right">
             <span>落樱后台管理系统</span>
             <div>
-              <input type="text" placeholder="用户名" v-model="inputUsername">
+              <input type="text" placeholder="用户名" v-model="inputUsername" v-bind:class="{showError:showTag}">
             </div>
             <div>
-              <input type="password" placeholder="密码" v-model="inputPassword">
+              <input type="password" placeholder="密码" v-model="inputPassword" v-bind:class="{showError:showTag}">
             </div>
             <button @click="login">Login</button>
         </div>
@@ -20,13 +20,15 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'login',
   data() {
     return {
       inputUsername: '',
       inputPassword: '',
-      show:false
+      show:false,
+      showTag:false
     }
   },
   mounted () {
@@ -35,17 +37,39 @@ export default {
   methods:{
     login(){
       if (this.inputUsername === ''){
-        alert("请输入用户名")
+        this.showTag = true
         return
       }
 
       if (this.inputPassword === ''){
-        alert("请输入密码")
+        this.showTag = true
         return
       }
-      this.$router.push({ path:'/main'})
+      let login = this
 
-    }
+      axios.post('http://localhost:8887/login', {
+        username: this.inputUsername,
+        password: this.inputPassword
+      })
+        .then(function (response) {
+
+          if (!response.data.success){
+            login.$message.error(response.data.msg);
+          }else {
+            login.$message({
+              message: '登录成功',
+              type: 'success'
+            });
+            login.$router.push({ path:'/main'})
+          }
+
+        })
+        .catch(function (error) {
+          login.$message.error(error);
+        });
+    },
+
+
   }
 }
 </script>
@@ -140,6 +164,17 @@ export default {
   button:active {
     box-shadow: 0 0 2rem -0.5rem #de78e0;
   }
+
+    .showError::-webkit-input-placeholder{
+      color: #ef0505;
+    }
+    .showError::-moz-placeholder{
+      color: #ef0505;
+}
+
+    .showError:-ms-input-placeholder{
+      color: #ef0505;
+}
 
 
 

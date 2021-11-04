@@ -34,6 +34,8 @@ Vue.use(TableColumn)
 Vue.use(Tag)
 Vue.use(Breadcrumb)
 Vue.use(BreadcrumbItem)
+import { Message } from 'element-ui'
+Vue.prototype.$message = Message
 Vue.prototype.$http = http
 
 if (process.env.NODE_ENV === 'development') require('@/api/mock')

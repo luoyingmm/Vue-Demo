@@ -5,5 +5,6 @@ module.exports = {
     public : '192.168.1.6:8080' , //修改这里
     https : false ,
     hotOnly : false ,
+
   }
 }
